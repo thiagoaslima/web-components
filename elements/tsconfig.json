@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "charset": "utf8",
+        "module": "esnext",
+        "target": "es6",
+        "noImplicitAny": false,
+        "sourceMap": true,
+        "allowUnreachableCode": false,
+        "pretty": true,
+        "watch": true,
+    },
+    "include": [
+        "**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ],
+    "compileOnSave": true
+}
