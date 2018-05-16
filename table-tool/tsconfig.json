@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
-        "charset": "utf8",
-        "module": "esnext",
-        "target": "es2018",
+        "charset": "utf-8",
+        "module": "none",
+        "target": "es5",
         "noImplicitAny": false,
         "sourceMap": true,
         "allowUnreachableCode": false,
@@ -10,10 +10,10 @@
         "watch": true,
     },
     "include": [
-        "**/*.ts"
+        "./src/js/**/*.ts"
     ],
     "exclude": [
-        "node_modules"
+        "./node_modules"
     ],
     "compileOnSave": true
 }
