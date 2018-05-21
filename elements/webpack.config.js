@@ -1,12 +1,14 @@
 const path = require('path');
 
 module.exports = {
+    mode: "development",
     entry: {
-        SidraResearch: './SidraResearch/SidraResearch.element.ts'
+        SidraResearch: './SidraResearch/SidraResearch.element.ts',
+        services: './services/index.ts'
     },
     output: {
         filename: '[name]/[name].js',
-        path: path.resolve(__dirname)
+        path: path.resolve(__dirname, 'dist')
     },
     devtool: 'inline-source-map',
     module: {

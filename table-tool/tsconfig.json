@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "charset": "utf-8",
-        "module": "none",
+        "module": "UMD",
         "target": "es5",
         "noImplicitAny": false,
         "sourceMap": true,
@@ -15,5 +15,14 @@
     "exclude": [
         "./node_modules"
     ],
+    "paths": {
+        "@ibge/elements": [
+            "../elements/"
+        ],
+        "*": [
+            "node_modules/@types/*",
+            "*"
+        ]
+    },
     "compileOnSave": true
 }

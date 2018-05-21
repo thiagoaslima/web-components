@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
         "charset": "utf8",
-        "module": "esnext",
-        "target": "es2018",
+        "module": "ES6",
+        "target": "es6",
         "noImplicitAny": false,
         "sourceMap": true,
         "allowUnreachableCode": false,
@@ -14,6 +14,9 @@
     ],
     "exclude": [
         "node_modules"
+    ],
+    "types": [
+
     ],
     "compileOnSave": true
 }

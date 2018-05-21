@@ -1,1 +1,2 @@
-export { SidraResearchElement } from './SidraResearch/index';
+export { SidraService, sidraService } from './services/index';
+export { SidraResearch, SidraResearchElement } from './SidraResearch/index';
