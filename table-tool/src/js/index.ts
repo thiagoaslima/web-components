@@ -1,5 +1,1 @@
-import { sidraService } from '@ibge/elements';
-
-
-sidraService.
-
+import * as IBGE from 'ibge-elements';

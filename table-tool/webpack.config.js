@@ -5,9 +5,9 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     mode: "development",
-    entry: './src/js/index.js',
+    entry: './src/js/index.ts',
     output: {
-        filename: 'bundle.js',
+        filename: 'table-tool.js',
         path: path.resolve(__dirname, 'dist')
     },
     devtool: 'source-map',
@@ -40,10 +40,13 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin()
     ],
     resolve: {
-        extensions: ['.tsx', '.ts', '.js']
+        extensions: ['.tsx', '.ts', '.js'],
+        alias: {
+            'ibge-elements$': path.resolve(__dirname, '../ibge-elements/esm5/')
+        }
     },
     devServer: {
         contentBase: './dist',
-        hot: true
+        hot: false
     }
 };

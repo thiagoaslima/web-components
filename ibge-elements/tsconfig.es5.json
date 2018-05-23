@@ -1,0 +1,28 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "charset": "utf8",
+        "noImplicitAny": false,
+        "allowUnreachableCode": false,
+        "module": "umd",
+        "sourceMap": true,
+        "declaration": false,
+        "newLine": "LF",
+        "pretty": true,
+        "stripInternal": true,
+        "diagnostics": true,
+        "target": "es5",
+        "moduleResolution": "node",
+        "forceConsistentCasingInFileNames": true,
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "watch": true
+    },
+    "include": [
+        "**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+}

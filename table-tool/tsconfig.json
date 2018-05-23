@@ -1,4 +1,5 @@
 {
+    "compileOnSave": true,
     "compilerOptions": {
         "charset": "utf-8",
         "module": "UMD",
@@ -8,21 +9,18 @@
         "allowUnreachableCode": false,
         "pretty": true,
         "watch": true,
+        "baseUrl": ".",
+        "paths": {
+            "ibge-elements": [
+                "../ibge-elements/esm5/index.js"
+            ]
+        }
     },
     "include": [
-        "./src/js/**/*.ts"
+        "./src/js/**/*.ts",
+        "./node_modules/@ibge/elements/src/**/*.ts"
     ],
     "exclude": [
         "./node_modules"
-    ],
-    "paths": {
-        "@ibge/elements": [
-            "../elements/"
-        ],
-        "*": [
-            "node_modules/@types/*",
-            "*"
-        ]
-    },
-    "compileOnSave": true
+    ]
 }
