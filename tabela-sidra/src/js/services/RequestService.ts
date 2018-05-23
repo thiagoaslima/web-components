@@ -2,12 +2,14 @@ export class RequestService {
 
     get(url) {
         return new Promise((resolve, reject) => {
+            const self = this;
+
             let request = new XMLHttpRequest();
             request.open('GET', url, true);
 
             request.onreadystatechange = function () {
                 if (this.readyState === 4) {
-                    if (this._isStatusSuccess(this.status)) {
+                    if (self._isStatusSuccess(this.status)) {
                         resolve(this.responseText || this.response);
                     } else {
                         reject(Error(this.statusText));
@@ -37,7 +39,7 @@ export class RequestService {
             });
     }
 
-    _isStatusSuccess(status) {
+    private _isStatusSuccess(status) {
         return status >= 200 && status < 400;
     }
 }

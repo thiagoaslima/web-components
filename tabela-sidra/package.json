@@ -1,0 +1,20 @@
+{
+  "name": "tabela-sidra",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "w": "npx tsc --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/core-js": "^0.9.46",
+    "@types/node": "^10.1.2",
+    "typescript": "^2.8.3"
+  },
+  "dependencies": {
+    "core-js": "^2.5.6"
+  }
+}

@@ -1,35 +1,44 @@
+import { HTMLCustomElement } from "./HTMLCustomElement";
+
 // @ts-check
 
-const attributes = {
-    'localidades': 'localidades',
-    'codigo': 'codigo',
-    'categorias': 'categorias',
-    'variavel': 'variavel'
+enum attributes {
+    'localidades'= 'localidades',
+    'codigo' = 'codigo',
+    'categorias' = 'categorias',
+    'variavel' = 'variavel'
 };
 
-class TabelaSidraElement extends HTMLElement {
+export class TabelaSidraElement extends HTMLCustomElement {
     static tagName = 'tabela-sidra';
 
     static get observedAttributes() {
         return Object.keys(attributes).map(key => attributes[key]);
     }
 
+    private _shadowRoot: ShadowRoot;
+
     get codigo() {
-        return this.getAttribute('codigo')
+        return this.getAttribute('codigo');
     }
     get categorias() {
-        return this.getAttribute('categorias')
+        return this.getAttribute('categorias');
     }
     get localidades() {
-        return this.getAttribute('localidades')
+        return this.getAttribute('localidades');
     }
     get variavel() {
-        return this.getAttribute('variavel')
+        return this.getAttribute('variavel');
+    }
+
+    init() {
+        console.log('init');
+        debugger;
+        this._shadowRoot = this.attachShadow({mode: 'open'});
+        this._shadowRoot.appendChild(document.createElement('sidra-service'));
     }
 
     connectedCallback() {
-        this._shadowRoot = this.attachShadow({mode: 'open'});
-        this._shadowRoot.appendChild(document.createElement('sidra-service'));
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -40,7 +49,7 @@ class TabelaSidraElement extends HTMLElement {
             case 'localidades':
             case 'variavel':
                 this[name] = newValue;
-                const params = this._prepareParams()
+                const params = this._prepareParams();
                 break;
         }   
     }
@@ -55,4 +64,5 @@ class TabelaSidraElement extends HTMLElement {
     }
 }
 
+console.log('define', TabelaSidraElement.tagName);
 customElements.define(TabelaSidraElement.tagName, TabelaSidraElement);

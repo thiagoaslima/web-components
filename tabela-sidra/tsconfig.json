@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "module": "umd",
+        "target": "es5",
+        "allowUnreachableCode": false,
+        "alwaysStrict": true,
+        "charset": "utf-8",
+        "diagnostics": true,
+        "forceConsistentCasingInFileNames": true,
+        "lib": [
+            "dom",
+            "es5",
+            "es2015.promise",
+            "es2016"
+        ],
+        "noImplicitAny": false,
+        "sourceMap": true,
+        "typeRoots": [
+            "./node_modules/@types"
+        ],
+        "types": [
+            "node",
+            "core-js"
+        ],
+        "rootDir": "./src",
+        "outDir": "./dist",
+        "watch": true
+    }
+}
