@@ -1,7 +1,8 @@
 {
     "compilerOptions": {
-        "module": "umd",
-        "target": "es5",
+        "module": "es2015",
+        "moduleResolution": "node",
+        "target": "es6",
         "allowUnreachableCode": false,
         "alwaysStrict": true,
         "charset": "utf-8",
@@ -23,7 +24,7 @@
             "core-js"
         ],
         "rootDir": "./src",
-        "outDir": "./dist",
+        "outDir": "./es6",
         "watch": true
     }
 }

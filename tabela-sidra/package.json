@@ -2,19 +2,30 @@
   "name": "tabela-sidra",
   "version": "1.0.0",
   "description": "",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "w": "npx tsc --watch"
+    "start": "npx http-server . -o -c -1",
+    "build": "concurrently --kill-others \"npx tsc -p tsconfig.json\" \"npx webpack --watch --colors\""
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/core-js": "^0.9.46",
     "@types/node": "^10.1.2",
-    "typescript": "^2.8.3"
+    "clean-webpack-plugin": "^0.1.19",
+    "concurrently": "^3.5.1",
+    "css-loader": "^0.28.11",
+    "http-server": "^0.11.1",
+    "style-loader": "^0.21.0",
+    "typescript": "^2.8.3",
+    "webpack-cli": "^2.1.4"
   },
   "dependencies": {
-    "core-js": "^2.5.6"
+    "babel-loader": "^7.1.4",
+    "core-js": "^2.5.6",
+    "document-register-element": "^1.8.1",
+    "webpack": "^4.8.3"
   }
 }

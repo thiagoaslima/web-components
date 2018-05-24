@@ -1,0 +1,1 @@
+{"version":3,"file":"removeSubstring.js","sourceRoot":"","sources":["../../../src/js/helpers/removeSubstring.ts"],"names":[],"mappings":"AAAA,MAAM,0BAA0B,KAAa,EAAE,GAAW,EAAE,GAAW;IACnE,OAAO,KAAK,KAAK,CAAC,CAAC,CAAC;QAChB,GAAG,CAAC,MAAM,CAAC,GAAG,CAAC,CAAC,CAAC;QACjB,GAAG,CAAC,MAAM,CAAC,CAAC,EAAE,KAAK,CAAC,GAAG,GAAG,CAAC,MAAM,CAAC,KAAK,GAAG,GAAG,CAAC,CAAC;AACvD,CAAC"}
