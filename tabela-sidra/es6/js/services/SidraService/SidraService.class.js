@@ -1,6 +1,5 @@
 //@ts-check
-import { requestService } from "./RequestService";
-import { atributosSidraElement } from "../elements/SidraElement.abstract";
+import { requestService } from "../RequestService";
 export class SidraService {
     constructor(_requestService) {
         this._requestService = _requestService;
@@ -21,4 +20,4 @@ export class SidraService {
     }
 }
 export const sidraService = new SidraService(requestService);
-//# sourceMappingURL=SidraService.js.map
+//# sourceMappingURL=SidraService.class.js.map

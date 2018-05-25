@@ -1,0 +1,1 @@
+//# sourceMappingURL=IBGETabela.interfaces.js.map

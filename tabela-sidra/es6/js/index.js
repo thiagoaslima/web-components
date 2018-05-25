@@ -1,7 +1,15 @@
+import { HTMLCustomElement } from "./elements/HTMLCustomElement";
 import { SidraServiceElement } from './elements/SidraService.element';
 import { TabelaSidraElement } from './elements/TabelaSidra.element';
-console.log(SidraServiceElement.tagName);
-console.log(TabelaSidraElement.tagName);
-customElements.define('sidra-service', SidraServiceElement);
-customElements.define('tabela-sidra', TabelaSidraElement);
+SidraServiceElement;
+TabelaSidraElement;
+class TesteElement extends HTMLCustomElement {
+    get template() {
+        return `<p>Hello World!</p>`;
+    }
+    connectedCallback() {
+        this.innerHTML = this.template;
+    }
+}
+customElements.define('el-teste', TesteElement);
 //# sourceMappingURL=index.js.map

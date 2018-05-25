@@ -1,6 +1,5 @@
 //@ts-check
-import { requestService } from "./RequestService";
-import { atributosSidraElement } from "../elements/SidraElement.abstract";
+import { requestService } from "../RequestService";
 export class SidraService {
     constructor(_requestService) {
         this._requestService = _requestService;

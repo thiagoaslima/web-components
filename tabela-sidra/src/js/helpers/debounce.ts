@@ -7,7 +7,6 @@
  * @returns {Function} retorna fn recebida, já com o comportamento de aguardar o tempo do timeout antes de sua execução
  */
 
-console.log('debounce');
 export function debounce(fn, timeout = 200) {
     let timerId;
 
