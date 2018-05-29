@@ -15,7 +15,6 @@ export class SidraService {
     }
 
     _buildUrl(params: ApiSidra.Parameters) {
-        debugger;
         const { tabela, periodos, variaveis, localidades, categorias } = params;
         const queryParams = [
             `localidades=${localidades.join('|')}`,

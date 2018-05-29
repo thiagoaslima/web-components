@@ -10,7 +10,6 @@ export class SidraService {
         return this._requestService.getJSON(this._buildUrl(params));
     }
     _buildUrl(params) {
-        debugger;
         const { tabela, periodos, variaveis, localidades, categorias } = params;
         const queryParams = [
             `localidades=${localidades.join('|')}`,

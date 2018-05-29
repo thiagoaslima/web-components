@@ -5,9 +5,9 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx http-server . -o -c -1",
-    "build": "concurrently --kill-others \"npx tsc -p tsconfig.json\" \"npx webpack --watch --colors\""
+    "build": "concurrently --kill-others \"npx tsc -p tsconfig.json\" \"npx webpack --watch --colors\" ",
+    "build-test": "concurrently --kill-others \"npx tsc -p tsconfig.json\" \"npx webpack ---config webpack.testes.config.js --watch --colors\" "
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +16,7 @@
     "@types/node": "^10.1.2",
     "clean-webpack-plugin": "^0.1.19",
     "concurrently": "^3.5.1",
+    "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
     "http-server": "^0.11.1",
     "style-loader": "^0.21.0",

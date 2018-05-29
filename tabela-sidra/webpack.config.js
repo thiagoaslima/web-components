@@ -2,9 +2,8 @@ const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
+console.log("BUILD");
 let debug = process.env.NODE_ENV !== "production";
-
-console.log('>>>', debug)
 
 module.exports = {
 	entry: './es6/js/index.js',
