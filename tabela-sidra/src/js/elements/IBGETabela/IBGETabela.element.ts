@@ -1,6 +1,12 @@
 import { HTMLCustomElement } from '../HTMLCustomElement';
 import { IBGETabelaColumnElement } from './IBGETabelaColumn.element';
 import { getPropertyValue } from '../../helpers/getPropertyValue';
+import { debounce } from '../../helpers/debounce';
+
+/** WEBPACK HACK **/
+/** FORCE SCRIPT INCLUSION **/
+IBGETabelaColumnElement;
+/** WEBPACK HACK END **/
 
 enum atributos {
     linhasHeader = 'linhas-cabecalho',
@@ -21,7 +27,14 @@ export class IBGETabelaElement extends HTMLCustomElement {
         return this._dadosTabela.slice();
     }
 
-    public colunas: { dados: string, titulo: string }[] = [];
+    public _colunas: { dados: string, titulo: string }[] = [];
+    set colunas(colunas) {
+        this._colunas = colunas;
+        this.render();
+    }
+    get colunas() {
+        return this._colunas.slice();
+    }
 
     connectedCallback() {
         this.colunas = Array.from(this.querySelectorAll<IBGETabelaColumnElement>('ibge-tabela-column')).map(el => ({
@@ -37,11 +50,12 @@ export class IBGETabelaElement extends HTMLCustomElement {
 
     attributeChangedCallback(attrName, oldVal, newVal) {
         if (oldVal === newVal) { return; }
+
     }
 
-    render() {
+    render = debounce(() => {
         this.innerHTML = this.template();
-    }
+    });
 
     protected template() {
         return `<table>
@@ -61,5 +75,4 @@ export class IBGETabelaElement extends HTMLCustomElement {
     }
 }
 
-customElements.define(IBGETabelaColumnElement.tagName, IBGETabelaColumnElement);
 customElements.define(IBGETabelaElement.tagName, IBGETabelaElement);

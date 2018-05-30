@@ -79,8 +79,12 @@ export abstract class SidraElement extends HTMLCustomElement {
         return this._parametros.localidades;
     }
     set localidades(localidades: string | number | Array<number | string>) {
-        this._parametros.localidades = this._handleLocalidades(localidades);
-        this.setAttribute(atributosSidraElement.localidades, this._parametros.localidades.join(','));
+        const _localidades = this._handleLocalidades(localidades);
+
+        if (this._parametros.localidades.join(',') !== _localidades.join(',')) {
+            this._parametros.localidades = _localidades;
+            this.setAttribute(atributosSidraElement.localidades, this._parametros.localidades.join(','));
+        }
     }
 
     protected _handleLocalidades(localidades: string | number | Array<number | string>) {
@@ -115,7 +119,7 @@ export abstract class SidraElement extends HTMLCustomElement {
             const self = SidraElement.localidadesNormalizer;
             let codigos = self.separateCodigos(localidades);
             let { n, ns, numericos } = self.tratarTexto(self.checarRedundancia(codigos));
-            return n.concat(ns, numericos);
+            return n.concat(ns, numericos).filter(Boolean);
         },
         separateCodigos(codigos: string) {
             const self = SidraElement.localidadesNormalizer;
@@ -162,7 +166,7 @@ export abstract class SidraElement extends HTMLCustomElement {
                 str = str.trim();
                 let regex = self.regex.n;
                 let match = regex.exec(str);
-                return obj[match[0]];
+                return !obj[match[0]];
             });
     
             return {

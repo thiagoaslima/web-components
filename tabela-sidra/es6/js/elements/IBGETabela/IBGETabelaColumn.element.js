@@ -28,4 +28,5 @@ export class IBGETabelaColumnElement extends HTMLCustomElement {
     }
 }
 IBGETabelaColumnElement.tagName = 'ibge-tabela-column';
+customElements.define(IBGETabelaColumnElement.tagName, IBGETabelaColumnElement);
 //# sourceMappingURL=IBGETabelaColumn.element.js.map

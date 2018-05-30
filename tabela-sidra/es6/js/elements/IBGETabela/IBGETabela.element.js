@@ -1,6 +1,11 @@
 import { HTMLCustomElement } from '../HTMLCustomElement';
 import { IBGETabelaColumnElement } from './IBGETabelaColumn.element';
 import { getPropertyValue } from '../../helpers/getPropertyValue';
+import { debounce } from '../../helpers/debounce';
+/** WEBPACK HACK **/
+/** FORCE SCRIPT INCLUSION **/
+IBGETabelaColumnElement;
+/** WEBPACK HACK END **/
 var atributos;
 (function (atributos) {
     atributos["linhasHeader"] = "linhas-cabecalho";
@@ -11,7 +16,10 @@ export class IBGETabelaElement extends HTMLCustomElement {
     constructor() {
         super(...arguments);
         this._dadosTabela = [];
-        this.colunas = [];
+        this._colunas = [];
+        this.render = debounce(() => {
+            this.innerHTML = this.template();
+        });
     }
     set dados(dados) {
         if (dados === this._dadosTabela) {
@@ -22,6 +30,13 @@ export class IBGETabelaElement extends HTMLCustomElement {
     }
     get dados() {
         return this._dadosTabela.slice();
+    }
+    set colunas(colunas) {
+        this._colunas = colunas;
+        this.render();
+    }
+    get colunas() {
+        return this._colunas.slice();
     }
     connectedCallback() {
         this.colunas = Array.from(this.querySelectorAll('ibge-tabela-column')).map(el => ({
@@ -37,9 +52,6 @@ export class IBGETabelaElement extends HTMLCustomElement {
             return;
         }
     }
-    render() {
-        this.innerHTML = this.template();
-    }
     template() {
         return `<table>
             <thead>
@@ -52,6 +64,5 @@ export class IBGETabelaElement extends HTMLCustomElement {
     }
 }
 IBGETabelaElement.tagName = 'ibge-tabela';
-customElements.define(IBGETabelaColumnElement.tagName, IBGETabelaColumnElement);
 customElements.define(IBGETabelaElement.tagName, IBGETabelaElement);
 //# sourceMappingURL=IBGETabela.element.js.map

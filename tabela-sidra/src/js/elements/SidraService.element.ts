@@ -4,6 +4,12 @@ import { removeSubstring } from "../helpers/removeSubstring";
 import { debounce } from "../helpers/debounce";
 import { SidraElement, atributosSidraElement } from "./SidraElement.abstract";
 
+/** WEBPACK HACK **/
+/** FORCE SCRIPT INCLUSION **/
+SidraElement;
+/** WEBPACK HACK END **/
+
+
 export enum events {
     success = 'onSucess',
     error = 'onError'

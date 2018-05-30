@@ -72,8 +72,11 @@ export class SidraElement extends HTMLCustomElement {
         return this._parametros.localidades;
     }
     set localidades(localidades) {
-        this._parametros.localidades = this._handleLocalidades(localidades);
-        this.setAttribute(atributosSidraElement.localidades, this._parametros.localidades.join(','));
+        const _localidades = this._handleLocalidades(localidades);
+        if (this._parametros.localidades.join(',') !== _localidades.join(',')) {
+            this._parametros.localidades = _localidades;
+            this.setAttribute(atributosSidraElement.localidades, this._parametros.localidades.join(','));
+        }
     }
     _handleLocalidades(localidades) {
         if (Array.isArray(localidades)) {
@@ -102,7 +105,7 @@ SidraElement.localidadesNormalizer = {
         const self = SidraElement.localidadesNormalizer;
         let codigos = self.separateCodigos(localidades);
         let { n, ns, numericos } = self.tratarTexto(self.checarRedundancia(codigos));
-        return n.concat(ns, numericos);
+        return n.concat(ns, numericos).filter(Boolean);
     },
     separateCodigos(codigos) {
         const self = SidraElement.localidadesNormalizer;
@@ -142,7 +145,7 @@ SidraElement.localidadesNormalizer = {
             str = str.trim();
             let regex = self.regex.n;
             let match = regex.exec(str);
-            return obj[match[0]];
+            return !obj[match[0]];
         });
         return {
             n, ns, numericos

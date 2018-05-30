@@ -7,7 +7,8 @@ const webpack = require('webpack');
 module.exports = {
 	entry: {
 		"ibge-tabela": './es6/testes/ibge-tabela/ibge-tabela.js',
-		"sidra-service": './es6/testes/sidra-service/sidra-service.js'
+		"sidra-service": './es6/testes/sidra-service/sidra-service.js',
+		"tabela-sidra": './es6/testes/tabela-sidra/tabela-sidra.js'
 	},
 	devtool: "inline-sourcemap",
 	mode: "development",

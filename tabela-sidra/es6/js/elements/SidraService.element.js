@@ -1,6 +1,10 @@
 import { sidraService } from "../services/SidraService";
 import { debounce } from "../helpers/debounce";
 import { SidraElement } from "./SidraElement.abstract";
+/** WEBPACK HACK **/
+/** FORCE SCRIPT INCLUSION **/
+SidraElement;
+/** WEBPACK HACK END **/
 export var events;
 (function (events) {
     events["success"] = "onSucess";

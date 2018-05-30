@@ -3,7 +3,17 @@ import { debounce } from "../helpers/debounce";
 import { SidraElement, atributosSidraElement } from "./SidraElement.abstract";
 import { SidraServiceElement, events as SidraServiceEvents } from "./SidraService.element";
 import { IBGETabelaElement } from './IBGETabela/IBGETabela.element';
+import { IBGETabelaColumnElement } from './IBGETabela/IBGETabelaColumn.element';
 import { ApiSidra } from "../services/SidraService";
+
+/** WEBPACK HACK **/
+/** FORCE SCRIPT INCLUSION **/
+SidraElement;
+SidraServiceElement;
+IBGETabelaElement;
+IBGETabelaColumnElement;
+/** WEBPACK HACK END **/
+
 
 type eixoTabela = 'periodos' | 'localidades' | 'variaveis';
 type dadosInternosSidra = {
@@ -32,9 +42,19 @@ export class TabelaSidraElement extends SidraElement {
     init() {
         this._sidraServiceElement = document.createElement('sidra-service') as SidraServiceElement;
         this._ibgeTabelaElement = document.createElement('ibge-tabela') as IBGETabelaElement;
-        this._shadowRoot = this.attachShadow({ mode: 'open' });
-        this._shadowRoot.appendChild(this._sidraServiceElement as Node);
-        this._shadowRoot.appendChild(this._ibgeTabelaElement as Node);
+        
+        const columns = Array.from(this.querySelectorAll<IBGETabelaColumnElement>('ibge-tabela-column'));
+        columns.forEach(el => {
+            this._ibgeTabelaElement.appendChild(el.cloneNode(true));
+            el.remove();
+        })
+
+        debugger;
+        
+        // this._shadowRoot = this.attachShadow({ mode: 'open' });
+        this.appendChild(this._ibgeTabelaElement as Node);
+        this.appendChild(this._sidraServiceElement as Node);
+
     }
 
     connectedCallback() {
@@ -82,7 +102,7 @@ export class TabelaSidraElement extends SidraElement {
         this.updateTable()
     }
 
-    private _handleResponse(evt: CustomEvent) {
+    private _handleResponse = ((self) => (evt: CustomEvent) => {
         const json: ApiSidra.Response = evt.detail.json;
         let localidades = {}, periodos = {}, variaveis = {}, valores = [];
 
@@ -101,25 +121,25 @@ export class TabelaSidraElement extends SidraElement {
                 periodos[periodo] = periodos[periodo] || { id: periodo, nome: periodo };
 
                 valores.push({
-                    localidade: localidade.id,
-                    periodo: periodo,
-                    variavel: variavel.id,
+                    localidades: localidade.id,
+                    periodos: periodo,
+                    variaveis: variavel.id,
                     valor: serie[periodo]
                 });
             });
         }
 
-        this.dados = {
+        self.dados = {
             localidades: Object.keys(localidades).map(key => localidades[key]),
             periodos: Object.keys(periodos).map(key => periodos[key]),
             variaveis: Object.keys(variaveis).map(key => variaveis[key]),
             valores
         }
-    }
+    })(this);
 
     private _convertToTable() {
-        const colunas = this.dados[this.colunas].map(coluna => ({dados: coluna.nome, titulo: coluna.nome}));
-
+        let colunas = this.dados[this.colunas].map(coluna => ({dados: coluna.nome, titulo: coluna.nome}));
+        colunas.unshift({dados: <string>this.linhas, titulo: ""});
         const dados = this.dados[this.linhas].map(objLinha => {
             let obj = { [this.linhas]: objLinha.nome }
             this.dados[this.colunas].forEach(objColuna => {
@@ -127,17 +147,19 @@ export class TabelaSidraElement extends SidraElement {
             });
 
             return obj;
-        })
+        });
 
         return { colunas, dados };
     }
 
     private updateTable() {
-        debugger;
         const { colunas, dados } = this._convertToTable();
-        this._ibgeTabelaElement.colunas = colunas;
+        if (this._ibgeTabelaElement.colunas.length == 0) {
+            this._ibgeTabelaElement.colunas = colunas;
+        } 
         this._ibgeTabelaElement.dados = dados;
     }
 }
 
+console.log('teste', TabelaSidraElement.tagName);
 customElements.define(TabelaSidraElement.tagName, TabelaSidraElement);

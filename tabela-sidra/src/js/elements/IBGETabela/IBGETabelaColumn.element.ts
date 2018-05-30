@@ -38,3 +38,5 @@ export class IBGETabelaColumnElement extends HTMLCustomElement {
 
     }
 }
+
+customElements.define(IBGETabelaColumnElement.tagName, IBGETabelaColumnElement);

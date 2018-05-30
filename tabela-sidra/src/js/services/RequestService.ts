@@ -28,7 +28,7 @@ export class RequestService {
 
     getJSON(url) {
         return this.get(url)
-            .then(response => {
+            .then((response: any) => {
                 try {
                     return JSON.parse(response);
                 } catch (err) {

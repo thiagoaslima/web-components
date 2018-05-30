@@ -23,7 +23,7 @@ export class RequestService {
     }
     getJSON(url) {
         return this.get(url)
-            .then(response => {
+            .then((response) => {
             try {
                 return JSON.parse(response);
             }
